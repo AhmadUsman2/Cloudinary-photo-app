@@ -13,7 +13,7 @@ export default function UploadButton() {
       <CldUploadButton
         onUpload={(result: UploadResult) => {
           //   setImageId(result.info.public_id);
-          console.log("refresh");
+          // console.log("refresh");
           setTimeout(() => {
             router.refresh();
           }, 1000);
