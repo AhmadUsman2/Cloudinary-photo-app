@@ -9,12 +9,14 @@ import { SearchResult } from "../app/gallery/page";
 import { useState } from "react";
 import { ImageMenu } from "./image-menu";
 
-export function CloudinaryImage(props: {
-  imageData: SearchResult;
-  
-  onUnheart?: (unheartedResource: SearchResult) => void;
-}&Omit<CldImageProps,"src">) {
-  const [transition, startTransition] =  useTransition();
+export function CloudinaryImage(
+  props: {
+    imageData: SearchResult;
+
+    onUnheart?: (unheartedResource: SearchResult) => void;
+  } & Omit<CldImageProps, "src">
+) {
+  const [transition, startTransition] = useTransition();
 
   const { imageData, onUnheart } = props;
 
@@ -46,7 +48,7 @@ export function CloudinaryImage(props: {
           className="absolute top-2 left-2 hover:text-red-500 cursor-pointer"
         />
       )}
-      <ImageMenu />
+      <ImageMenu image={imageData} />
     </div>
   );
 }
