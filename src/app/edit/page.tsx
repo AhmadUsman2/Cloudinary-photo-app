@@ -1,6 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { CldImage } from "next-cloudinary";
 import { useState } from "react";
 
@@ -22,6 +24,9 @@ export default function EditPage({
     | "background"
   >();
 
+  const [prompt, setPrompt] = useState("");
+  const [Pendingprompt, setPendingPrompt] = useState("");
+
   return (
     <section>
       <div className="flex flex-col gap-8">
@@ -35,9 +40,21 @@ export default function EditPage({
           >
             Clear All
           </Button>
-          <Button onClick={() => setTransformation("generative-fill")}>
-            Apply Generative Fill
-          </Button>
+          <div className="flex flex-col gap-5">
+            <Button
+              onClick={() => {
+                setTransformation("generative-fill");
+                setPrompt(Pendingprompt);
+              }}
+            >
+              Apply Generative Fill
+            </Button>
+            <Label>Enter Prompt</Label>
+            <Input
+              value={Pendingprompt}
+              onChange={(e) => setPendingPrompt(e.currentTarget.value)}
+            />
+          </div>
           <Button onClick={() => setTransformation("blur")}>Apply Blur</Button>
           <Button onClick={() => setTransformation("grayscale")}>
             Convert to Grey
@@ -47,8 +64,9 @@ export default function EditPage({
           </Button>
           <Button onClick={() => setTransformation("tint")}>Tint</Button>
           <Button onClick={() => setTransformation("effects")}>Effects</Button>
-          <Button onClick={() => setTransformation("background")}>Remove Background</Button>
-
+          <Button onClick={() => setTransformation("background")}>
+            Remove Background
+          </Button>
         </div>
         <div className="grid grid-cols-2 gap-12">
           <CldImage
@@ -60,9 +78,11 @@ export default function EditPage({
           {transformation === "generative-fill" && (
             <CldImage
               src={publicId}
-              width="1200"
-              height="1400"
-              fillBackground
+              width="1800"
+              height="1200"
+              fillBackground={{
+                prompt: "",
+              }}
               alt=""
               sizes="100vw"
               style={{ objectFit: "cover" }}
