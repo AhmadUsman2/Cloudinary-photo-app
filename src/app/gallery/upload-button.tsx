@@ -10,16 +10,7 @@ export default function UploadButton() {
 
   return (
     <Button asChild>
-      <CldUploadButton
-        onUpload={(result: UploadResult) => {
-          //   setImageId(result.info.public_id);
-          // console.log("refresh");
-          setTimeout(() => {
-            router.refresh();
-          }, 1000);
-        }}
-        uploadPreset="hu2sttxt"
-      >
+      <CldUploadButton uploadPreset="hu2sttxt">
         <div className="flex gap-2 items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"

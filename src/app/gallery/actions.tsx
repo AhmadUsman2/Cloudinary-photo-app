@@ -4,7 +4,6 @@ import cloudinary from "cloudinary";
 export async function setAsFavoriteAction(
   publicId: string,
   isFavorite: boolean,
-  path: string
 ) {
   if (isFavorite) {
     await cloudinary.v2.uploader.add_tag("favorite", [publicId]);
